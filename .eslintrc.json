@@ -1,3 +1,73 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "prefer-const": "warn",
+    "no-empty": "warn",
+
+    /* region === off because PHPStorm already checks for this. Would result in two errors (esLint + PHPStorm) === */
+    "@typescript-eslint/no-unused-vars": [
+      "off"
+    ],
+    "no-unused-vars": [
+      "off"
+    ],
+    /* endregion --- off because PHPStorm already checks for this. Would result in two errors (esLint + PHPStorm) --- */
+
+    "quotes": [
+      "warn",
+      "single"
+    ],
+    "indent": [
+      "warn",
+      4
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "no-multiple-empty-lines": [
+      "warn",
+      {
+        // I don't like this rule (and it's not recommended by default)
+        "max": 999,
+        // Only one new line at end of file
+        "maxEOF": 0
+      }
+    ],
+    "@typescript-eslint/no-empty-function": [
+      "warn"
+    ],
+    "@typescript-eslint/no-explicit-any": [
+      // I know what im doing
+      "off"
+    ],
+    "@typescript-eslint/ban-ts-comment": [
+      // I know what im doing
+      "off"
+    ],
+    "require-jsdoc": [
+      "warn",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": false,
+          "ClassDeclaration": true,
+          "ArrowFunctionExpression": false,
+          "FunctionExpression": false
+          // todo: also require for typescript cases (like enum, interface, ...)
+        }
+      }
+    ]
+  }
 }
