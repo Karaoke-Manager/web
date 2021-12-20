@@ -48,10 +48,6 @@
     "@typescript-eslint/no-empty-function": [
       "warn"
     ],
-    "@typescript-eslint/no-explicit-any": [
-      // I know what im doing
-      "off"
-    ],
     "@typescript-eslint/ban-ts-comment": [
       // I know what im doing
       "off"
