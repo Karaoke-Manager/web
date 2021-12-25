@@ -25,21 +25,24 @@ interface MyAppProps extends AppProps {
 }
 
 const App = (props: MyAppProps) => {
-    // todo: dont write with an if statement, but rather with useEffect (useEffect will only be executed on the client)
-    let wantDarkModeLocalStorage: string | null = null;
-    if (typeof localStorage !== 'undefined') { // Is undefined when SSR
-        wantDarkModeLocalStorage = localStorage.getItem('dark-mode');
-    }
+    /* region === dark mode? === */
+    const [wantDarkModeLocalStorage, setWantDarkModeLocalStorage] = useState<null | string>(null);
 
-    const [isDarkMode, setIsDarkMode] = useState(wantDarkModeLocalStorage === '1');
+    useEffect(() => { // Has to be in a useEffect because localStorage is not available on SSR. This is best practice
+        setWantDarkModeLocalStorage(localStorage.getItem('dark-mode'));
+    }, []);
+
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const isDarkModePreferred = useMediaQuery('(prefers-color-scheme: dark)');
     useEffect(() => { // For some reason useMediaQuery fires twice. This is why this is needed...
+        console.log('prefers-color-scheme: dark:', isDarkModePreferred);
         if (wantDarkModeLocalStorage === null) {
-            console.log('prefers-color-scheme: dark:', isDarkModePreferred);
             setIsDarkMode(isDarkModePreferred);
+        } else {
+            setIsDarkMode(wantDarkModeLocalStorage === '1');
         }
     }, [wantDarkModeLocalStorage, isDarkModePreferred]);
-
+    /* endregion --- dark mode? --- */
 
     const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
     return (
