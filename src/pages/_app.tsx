@@ -15,7 +15,6 @@ import {lightTheme, darkTheme} from '../styles/theme';
 import {useEffect, useState} from 'react';
 import {useMediaQuery} from '@mui/material';
 import DarkModeSwitch from '../components/DarkModeSwitch';
-import ExampleEmotionButton from '../components/ExampleEmotionButton';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -58,7 +57,6 @@ const App = (props: MyAppProps) => {
                     setIsDarkMode(checked);
                     localStorage.setItem('dark-mode', checked ? '1' : '0');
                 }}/>
-                <ExampleEmotionButton />
                 <Component {...pageProps} />
             </ThemeProvider>
         </CacheProvider>
