@@ -2,13 +2,14 @@ import '../styles/globals.scss';
 
 import Head from 'next/head';
 import type {AppProps} from 'next/app';
-import { ThemeProvider } from '@mui/material/styles';
+import {ThemeProvider} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import createEmotionCache from '../lib/createEmotionCache';
-import { CacheProvider, EmotionCache } from '@emotion/react';
+import {CacheProvider, EmotionCache} from '@emotion/react';
 import {lightTheme, darkTheme} from '../styles/theme';
 import {useEffect, useState} from 'react';
 import {useMediaQuery} from '@mui/material';
+import DarkModeSwitch from '../components/DarkModeSwitch';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -23,24 +24,36 @@ interface MyAppProps extends AppProps {
 }
 
 const App = (props: MyAppProps) => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    // todo: dont write with an if statement, but rather with useEffect (useEffect will only be executed on the client)
+    let wantDarkModeLocalStorage: string | null = null;
+    if (typeof localStorage !== 'undefined') { // Is undefined when SSR
+        wantDarkModeLocalStorage = localStorage.getItem('dark-mode');
+    }
+
+    const [isDarkMode, setIsDarkMode] = useState(wantDarkModeLocalStorage === '1');
     const isDarkModePreferred = useMediaQuery('(prefers-color-scheme: dark)');
     useEffect(() => { // For some reason useMediaQuery fires twice. This is why this is needed...
-        console.log('prefers-color-scheme: dark:', isDarkModePreferred);
-        setIsDarkMode(isDarkModePreferred);
-    }, [isDarkModePreferred]);
+        if (wantDarkModeLocalStorage === null) {
+            console.log('prefers-color-scheme: dark:', isDarkModePreferred);
+            setIsDarkMode(isDarkModePreferred);
+        }
+    }, [wantDarkModeLocalStorage, isDarkModePreferred]);
 
 
-    const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+    const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
     return (
         <CacheProvider value={emotionCache}>
             <Head>
                 <title>karman</title>
-                <meta name="viewport" content="initial-scale=1, width=device-width" />
+                <meta name="viewport" content="initial-scale=1, width=device-width"/>
             </Head>
             <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
                 {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                <CssBaseline />
+                <CssBaseline/>
+                <DarkModeSwitch checked={isDarkMode} onChange={(event, checked) => {
+                    setIsDarkMode(checked);
+                    localStorage.setItem('dark-mode', checked ? '1' : '0');
+                }}/>
                 <Component {...pageProps} />
             </ThemeProvider>
         </CacheProvider>
