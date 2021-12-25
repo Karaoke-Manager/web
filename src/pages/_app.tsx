@@ -1,5 +1,10 @@
 import '../styles/globals.scss';
 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 import Head from 'next/head';
 import type {AppProps} from 'next/app';
 import {ThemeProvider} from '@mui/material/styles';
@@ -10,11 +15,7 @@ import {lightTheme, darkTheme} from '../styles/theme';
 import {useEffect, useState} from 'react';
 import {useMediaQuery} from '@mui/material';
 import DarkModeSwitch from '../components/DarkModeSwitch';
-
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import ExampleEmotionButton from '../components/ExampleEmotionButton';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -54,6 +55,7 @@ const App = (props: MyAppProps) => {
                     setIsDarkMode(checked);
                     localStorage.setItem('dark-mode', checked ? '1' : '0');
                 }}/>
+                <ExampleEmotionButton />
                 <Component {...pageProps} />
             </ThemeProvider>
         </CacheProvider>
