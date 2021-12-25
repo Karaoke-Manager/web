@@ -1,4 +1,4 @@
-import '../../styles/globals.scss';
+import '../styles/globals.scss';
 
 import Head from 'next/head';
 import type {AppProps} from 'next/app';
@@ -6,7 +6,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import createEmotionCache from '../lib/createEmotionCache';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import {lightTheme, darkTheme} from '../../styles/theme';
+import {lightTheme, darkTheme} from '../styles/theme';
 import {useEffect, useState} from 'react';
 import {useMediaQuery} from '@mui/material';
 
