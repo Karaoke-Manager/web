@@ -1,9 +1,11 @@
+
 <script lang="ts">
     import Icon from "$lib/components/Icon.svelte";
 
     export let value = ""
     export let placeholder = "";
     let clazz = "mb-2";
+    // noinspection ReservedWordAsName
     export {clazz as class};
 
 </script>

@@ -1,7 +1,5 @@
 <script lang="ts">
-
     import SidebarLink from "$lib/components/sidebar/SidebarLink.svelte";
-    import Icon from "$lib/components/Icon.svelte";
     import ThemeToggle from "$lib/components/ThemeToggle.svelte";
 </script>
 

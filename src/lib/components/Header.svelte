@@ -3,7 +3,6 @@
     import Input from "$lib/components/Input.svelte";
     import Icon from "$lib/components/Icon.svelte";
     import {notifications} from "$lib/stores/notifications";
-    import ThemeToggle from "$lib/components/ThemeToggle.svelte";
 
     let notificationDropdown = "notification-dropdown"
     let notificationTooltip = "Notifications"
@@ -43,8 +42,8 @@
             </button>
             <div id="{notificationTooltip}"
                  role="tooltip"
-                 class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-700 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip"
-            >{notificationTooltip}
+                 class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-700 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                {notificationTooltip}
                 <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
             <!-- Dropdown menu -->

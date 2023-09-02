@@ -5,6 +5,7 @@
     export let fill = "currentColor"
     export let viewBox = "0 0 20 20"
     let clazz = "w-6 h-6 text-gray-800 dark:text-white";
+    // noinspection ReservedWordAsName
     export {clazz as class};
 </script>
 
