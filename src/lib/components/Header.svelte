@@ -1,8 +1,8 @@
 <script lang="ts">
-
+    import {sampleNotifications} from "$lib/stores/notifications";
     import Input from "$lib/components/Input.svelte";
     import Icon from "$lib/components/Icon.svelte";
-    import {notifications} from "$lib/stores/notifications";
+
 
     let notificationDropdown = "notification-dropdown"
     let notificationTooltip = "Notifications"
@@ -53,7 +53,7 @@
                     Notifications
                 </div>
                 <div>
-                    {#each $notifications as notification}
+                    {#each $sampleNotifications as notification}
 
                         <a href="{notification.href}"
                            class="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600">

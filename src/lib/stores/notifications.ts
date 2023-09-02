@@ -1,4 +1,4 @@
-import {readable} from "svelte/store";
+import {readable, type Writable, writable} from "svelte/store";
 
 type Notification = {
     image: string,
@@ -41,4 +41,5 @@ const TEST_DATA: Notification[] = [
 ]
 
 
-export const notifications = readable(TEST_DATA)
+export const sampleNotifications = readable(TEST_DATA)
+export const notifications: Writable<Notification[]> = writable([])
