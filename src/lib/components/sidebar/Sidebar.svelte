@@ -35,6 +35,9 @@
                 <SidebarLink icon="pie-chart" name="Overview" href="/"/>
             </li>
             <li>
+                <SidebarLink icon="calender" name="Milestones" href="/milestones"/>
+            </li>
+            <li>
                 <SidebarDropDown icon="file" name="Pages" dropDown="{pagesDropDown}"/>
             </li>
             <li>
