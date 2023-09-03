@@ -1,6 +1,6 @@
 <script lang="ts">
     import type {PageData} from "./$types";
-    import type {Milestone} from "./+page";
+    import type {Milestone} from "./milestone";
     import Icon from "$lib/components/Icon.svelte";
 
     export let data: PageData;
