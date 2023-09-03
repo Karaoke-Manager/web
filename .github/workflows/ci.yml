@@ -1,0 +1,90 @@
+  name: Karman Web CI
+
+  on:
+    pull_request:
+    push:
+      branches: [ main ]
+      tags: [ "*" ]
+
+
+  jobs:
+    lint:
+      name: Lint
+      runs-on: ubuntu-latest
+      steps:
+        - name: Check Out Code
+          uses: actions/checkout@v3
+        - name: Setup Node
+          uses: actions/setup-node@v3
+          with:
+            node-version: latest
+        - name: Install Dependencies
+          run: npm ci
+        - name: Run Type Checking
+          run: npm run check
+
+    test:
+      name: Test
+      runs-on: ubuntu-latest
+      steps:
+        - name: Check Out Code
+          uses: actions/checkout@v3
+        - name: Setup Node
+          uses: actions/setup-node@v3
+          with:
+            node-version: latest
+        - name: Install Dependencies
+          run: npm ci
+        - name: Run Tests
+          run: npm run test
+
+    build:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Check Out Code
+          uses: actions/checkout@v3
+        - name: Setup Node
+          uses: actions/setup-node@v3
+          with:
+            node-version: latest
+        - name: Install Dependencies
+          run: npm ci
+        - name: Build
+          run: npm run build
+        - name: Upload artifact
+          uses: actions/upload-artifact@v3
+          with:
+            name: karman-web-build
+            path: ./build
+
+    publish:
+      name: Publish
+      runs-on: ubuntu-latest
+      if: ${{ github.event_name == 'push' }}
+      steps:
+        - name: Docker Meta
+          id: meta
+          uses: docker/metadata-action@v4
+          with:
+            images: ghcr.io/Karaoke-Manager/web
+            flavor: |
+              latest=false
+            tags: |
+              type=edge,enable={{is_default_branch}}
+              type=semver,pattern=v{{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') }}
+              type=semver,pattern=v{{major}}.{{minor}}
+              type=semver,pattern=v{{version}}
+              type=semver,pattern=latest
+        - name: Login To GitHub Container Registry
+          uses: docker/login-action@v2
+          with:
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+            registry: ghcr.io
+        - name: Build and push
+          uses: docker/build-push-action@v4
+          with:
+            push: true
+            tags: ${{ steps.meta.outputs.tags }}
+            labels: ${{ steps.meta.outputs.labels }}
