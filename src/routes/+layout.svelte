@@ -1,24 +1,17 @@
 <script>
-    import "../app.scss";
+	import "../app.postcss";
+	import "flowbite";
+	import { initFlowbite } from "flowbite";
+	import { onMount } from "svelte";
+	import Sidebar from "$lib/components/sidebar/Sidebar.svelte";
+	import Header from "$lib/components/Header.svelte";
 
-    import {initFlowbite} from 'flowbite'
-    import {onMount} from "svelte";
-    import Sidebar from "$lib/components/sidebar/Sidebar.svelte";
-    import Header from "$lib/components/Header.svelte";
-
-    onMount(initFlowbite)
-
+	onMount(initFlowbite);
 </script>
 
+<Header />
 
-<div class="bg-gray-50 dark:bg-gray-900">
-
-    <Header/>
-
-    <Sidebar/>
-
-    <main class="p-4 md:ml-64 h-auto min-h-screen pt-20">
-        <slot/>
-    </main>
-</div>
-
+<Sidebar />
+<main class="h-auto min-h-screen p-4 pt-20 md:ml-64">
+	<slot />
+</main>

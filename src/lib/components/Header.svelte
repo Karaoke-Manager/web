@@ -1,84 +1,99 @@
-<script lang="ts">
-    import {sampleNotifications} from "$lib/stores/notifications";
-    import Input from "$lib/components/Input.svelte";
-    import Icon from "$lib/components/Icon.svelte";
+<script>
+	import { sampleNotifications } from "$lib/stores/notifications";
+	import Input from "$lib/components/Input.svelte";
+	import Icon from "$lib/components/Icon.svelte";
 
-
-    let notificationDropdown = "notification-dropdown"
-    let notificationTooltip = "Notifications"
-
+	const notificationDropdown = "notification-dropdown";
+	const notificationTooltip = "Notifications";
 </script>
 
-<nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
-    <div class="flex flex-wrap justify-between items-center">
-        <div class="flex justify-start items-center">
-            <button data-drawer-target="drawer-navigation"
-                    data-drawer-toggle="drawer-navigation"
-                    class="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                <Icon class="w-6 h-6" name="bars"/>
-            </button>
+<nav
+	class="fixed left-0 right-0 top-0 z-50 border-b border-gray-200 bg-white px-4 py-2.5 dark:border-gray-700 dark:bg-gray-800"
+>
+	<div class="flex flex-wrap items-center justify-between">
+		<div class="flex items-center justify-start">
+			<button
+				data-drawer-target="drawer-navigation"
+				data-drawer-toggle="drawer-navigation"
+				class="mr-2 cursor-pointer rounded-lg p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700 md:hidden"
+			>
+				<Icon class="h-6 w-6" name="bars" />
+			</button>
 
-            <a href="https://github.com/Karaoke-Manager" class="flex items-center justify-between mr-4">
-                <img src="https://usdx.eu/images/ultrastardx-icon.svg" class="mr-3 h-8" alt="Flowbite Logo"/>
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Karman</span>
-            </a>
-            <Input placeholder="Search" class="hidden md:block md:pl-2 md:w-96"/>
-        </div>
-        <div class="flex items-center lg:order-2">
-            <button type="button"
-                    data-drawer-toggle="drawer-navigation"
-                    aria-controls="drawer-navigation"
-                    class="p-2 mr-1 text-gray-500 rounded-lg md:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-                <span class="sr-only">Toggle search</span>
-                <Icon class="w-6 h-6" name="search" fill="none"/>
-            </button>
+			<a href="https://github.com/Karaoke-Manager" class="mr-4 flex items-center justify-between">
+				<img src="https://usdx.eu/images/ultrastardx-icon.svg" class="mr-3 h-8" alt="Flowbite Logo" />
+				<span class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Karman</span>
+			</a>
+			<Input placeholder="Search" class="hidden md:block md:w-96 md:pl-2" />
+		</div>
+		<div class="flex items-center lg:order-2">
+			<button
+				type="button"
+				data-drawer-toggle="drawer-navigation"
+				aria-controls="drawer-navigation"
+				class="mr-1 rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:ring-4 focus:ring-gray-300 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-600 md:hidden"
+			>
+				<span class="sr-only">Toggle search</span>
+				<Icon class="h-6 w-6" name="search" fill="none" />
+			</button>
 
-            <!-- Notifications -->
-            <button type="button"
-                    data-dropdown-toggle="{notificationDropdown}"
-                    data-tooltip-target="{notificationTooltip}"
-                    class="p-2 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-                <Icon class="w-6 h-6" name="bell"/>
-            </button>
-            <div id="{notificationTooltip}"
-                 role="tooltip"
-                 class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-700 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
-                {notificationTooltip}
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-            <!-- Dropdown menu -->
-            <div class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 rounded-xl"
-                 id="{notificationDropdown}">
-                <div class="block py-2 px-4 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-600 dark:text-gray-300">
-                    Notifications
-                </div>
-                <div>
-                    {#each $sampleNotifications as notification}
-
-                        <a href="{notification.href}"
-                           class="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600">
-                            <div class="flex-shrink-0">
-                                <img class="w-11 h-11 rounded-full" src="{notification.image}" alt=""/>
-                            </div>
-                            <div class="pl-3 w-full">
-                                <div class="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
-                                    {notification.message}
-                                </div>
-                                <div class="text-xs font-medium text-primary-600 dark:text-primary-500">
-                                    {notification.time}
-                                </div>
-                            </div>
-                        </a>
-                    {/each}
-                </div>
-                <a href="/"
-                   class="block py-2 text-md font-medium text-center text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-600 dark:text-white dark:hover:underline">
-                    <div class="inline-flex items-center">
-                        <Icon class="mr-2 w-4 h-4 text-gray-500 dark:text-gray-400" name="eye"/>
-                        View all
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
+			<!-- Notifications -->
+			<button
+				type="button"
+				data-dropdown-toggle={notificationDropdown}
+				data-tooltip-target={notificationTooltip}
+				class="mr-1 rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:ring-4 focus:ring-gray-300 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-600"
+			>
+				<Icon class="h-6 w-6" name="bell" />
+			</button>
+			<div
+				id={notificationTooltip}
+				role="tooltip"
+				class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-700 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
+			>
+				{notificationTooltip}
+				<div class="tooltip-arrow" data-popper-arrow></div>
+			</div>
+			<!-- Dropdown menu -->
+			<div
+				class="z-50 my-4 hidden max-w-sm list-none divide-y divide-gray-100 overflow-hidden rounded-xl bg-white text-base shadow-lg dark:divide-gray-600 dark:bg-gray-700"
+				id={notificationDropdown}
+			>
+				<div
+					class="block bg-gray-50 px-4 py-2 text-center text-base font-medium text-gray-700 dark:bg-gray-600 dark:text-gray-300"
+				>
+					Notifications
+				</div>
+				<div>
+					{#each $sampleNotifications as notification}
+						<a
+							href={notification.href}
+							class="flex border-b px-4 py-3 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-600"
+						>
+							<div class="flex-shrink-0">
+								<img class="h-11 w-11 rounded-full" src={notification.image} alt="" />
+							</div>
+							<div class="w-full pl-3">
+								<div class="mb-1.5 text-sm font-normal text-gray-500 dark:text-gray-400">
+									{notification.message}
+								</div>
+								<div class="text-xs font-medium text-primary-600 dark:text-primary-500">
+									{notification.time}
+								</div>
+							</div>
+						</a>
+					{/each}
+				</div>
+				<a
+					href="/"
+					class="text-md block bg-gray-50 py-2 text-center font-medium text-gray-900 hover:bg-gray-100 dark:bg-gray-600 dark:text-white dark:hover:underline"
+				>
+					<div class="inline-flex items-center">
+						<Icon class="mr-2 h-4 w-4 text-gray-500 dark:text-gray-400" name="eye" />
+						View all
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
 </nav>

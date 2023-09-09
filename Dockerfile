@@ -1,18 +1,19 @@
-FROM node:latest AS build
+FROM oven/bun:latest AS build
 
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
+COPY package.json bun.lockb ./
+RUN bun install --frozen-lockfile
 
 COPY . .
-RUN npm run build
+RUN bun run build
 
-FROM node:latest
+
+FROM oven/bun:latest
 WORKDIR /app
-COPY --from=build app/package.json app/package-lock.json ./
-RUN npm ci --omit dev
 
-COPY --from=build /app/build .
+COPY --from=build /app/build /app/package.json /app/bun.lockb ./
+RUN bun install --production
+# Required by svelte-adapter-bun (for whatever reason)
+RUN bun install devalue cookie set-cookie-parser
 
-EXPOSE 3000
-ENTRYPOINT ["node", "."]
+ENTRYPOINT ["bun", "index.js"]
