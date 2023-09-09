@@ -9,9 +9,12 @@
 	onMount(initFlowbite);
 </script>
 
-<Header />
+<div class="bg-gray-50 dark:bg-gray-900">
+	<Header />
 
-<Sidebar />
-<main class="h-auto min-h-screen p-4 pt-20 md:ml-64">
-	<slot />
-</main>
+	<Sidebar />
+
+	<main class="h-auto min-h-screen p-4 pt-20 md:ml-64">
+		<slot />
+	</main>
+</div>
