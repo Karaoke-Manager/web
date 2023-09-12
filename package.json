@@ -15,7 +15,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
 		"lint": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --check . && eslint .",
 		"format": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write .",
-		"prepare": "if-not-ci husky install",
+		"prepare": "husky install",
 		"commit": "cz"
 	},
 	"devDependencies": {
@@ -31,7 +31,6 @@
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-svelte": "^2.33.0",
 		"husky": "^8.0.0",
-		"if-ci": "^3.0.0",
 		"inquirer": "8",
 		"postcss": "^8.4.29",
 		"postcss-load-config": "^4.0.1",
