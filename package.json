@@ -1,37 +1,41 @@
 {
-	"name": "karman-web",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-		"lint": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --check . && eslint .",
-		"format": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write ."
-	},
-	"devDependencies": {
-		"@sveltejs/kit": "^1.24.1",
-		"@types/node": "^20.6.0",
-		"autoprefixer": "^10.4.15",
-		"eslint": "^8.49.0",
-		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-svelte": "^2.33.0",
-		"postcss": "^8.4.29",
-		"postcss-load-config": "^4.0.1",
-		"prettier": "^3.0.3",
-		"prettier-plugin-svelte": "^3.0.3",
-		"prettier-plugin-tailwindcss": "^0.5.4",
-		"svelte": "^4.2.0",
-		"svelte-adapter-bun": "^0.5.0",
-		"svelte-check": "^3.5.1",
-		"tailwindcss": "^3.3.3",
-		"typescript": "^5.2.2",
-		"vite": "^4.4.9"
-	},
-	"type": "module",
-	"dependencies": {
-		"flowbite": "^1.8.1"
-	}
+  "name": "karman-web",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+    "lint": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --check . && eslint .",
+    "format": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-tailwindcss --write .",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@sveltejs/kit": "^1.24.1",
+    "@types/node": "^20.6.0",
+    "autoprefixer": "^10.4.15",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-svelte": "^2.33.0",
+    "husky": "^8.0.0",
+    "postcss": "^8.4.29",
+    "postcss-load-config": "^4.0.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-svelte": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "svelte": "^4.2.0",
+    "svelte-adapter-bun": "^0.5.0",
+    "svelte-check": "^3.5.1",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9"
+  },
+  "type": "module",
+  "dependencies": {
+    "flowbite": "^1.8.1"
+  }
 }
