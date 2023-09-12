@@ -2,6 +2,11 @@
 	"name": "karman-web",
 	"version": "0.0.1",
 	"private": true,
+	"config": {
+		"commitizen": {
+			"path": "@commitlint/cz-commitlint"
+		}
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -17,7 +22,6 @@
 		"@commitlint/cli": "^17.7.1",
 		"@commitlint/config-conventional": "^17.7.0",
 		"@commitlint/cz-commitlint": "^17.7.1",
-		"@commitlint/prompt-cli": "^17.7.1",
 		"@sveltejs/kit": "^1.24.1",
 		"@types/node": "^20.6.0",
 		"autoprefixer": "^10.4.15",
@@ -43,10 +47,5 @@
 	"type": "module",
 	"dependencies": {
 		"flowbite": "^1.8.1"
-	},
-	"config": {
-		"commitizen": {
-			"path": "./node_modules/cz-conventional-changelog"
-		}
 	}
 }
