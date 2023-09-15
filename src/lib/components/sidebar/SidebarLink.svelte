@@ -1,5 +1,5 @@
 <script>
-	import Icon from "$lib/components/Icon.svelte";
+	import Icon from "@iconify/svelte";
 
 	/** @type {string} */
 	export let href;
@@ -20,10 +20,16 @@
 	class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 	data-tooltip-target={tooltip ? tooltipId : null}
 >
-	<Icon
-		name={icon}
-		class="h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-	/>
+	{#if icon}
+		<Icon
+			{icon}
+			class="h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+		/>
+	{:else}
+		<div
+			class="h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+		/>
+	{/if}
 
 	{#if name}
 		<span class="ml-3 flex-1 whitespace-nowrap">

@@ -1,5 +1,5 @@
 <script>
-	import Icon from "$lib/components/Icon.svelte";
+	import Icon from "@iconify/svelte";
 	import SidebarLink from "$lib/components/sidebar/SidebarLink.svelte";
 
 	/** @type {{icon?: string | null | undefined, name: string, href: string}[]} */
@@ -19,14 +19,12 @@
 >
 	{#if icon}
 		<Icon
+			{icon}
 			class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-			fill="currentColor"
-			viewBox="0 0 20 20"
-			name={icon}
 		/>
 	{/if}
 	<span class="ml-3 flex-1 whitespace-nowrap text-left">{name}</span>
-	<Icon name="arrow-down" />
+	<Icon icon="fe:arrow-down" />
 </button>
 <ul id={dropDownId} class="hidden space-y-2 py-2">
 	{#each dropDown as drop}

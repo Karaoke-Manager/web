@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from "svelte";
-	import Icon from "$lib/components/Icon.svelte";
+	import Icon from "@iconify/svelte";
 
 	let isDark = false;
 
@@ -40,6 +40,6 @@
 	class="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
 	on:click={toggle}
 >
-	<Icon name="sun" class="h-6 w-6 {!isDark ? 'hidden' : ''}" />
-	<Icon name="moon" class="h-6 w-6 {isDark ? 'hidden' : ''}" />
+	<Icon icon="fe:sunny-o" class="h-6 w-6 {!isDark ? 'hidden' : ''}" />
+	<Icon icon="fe:moon" class="h-6 w-6 {isDark ? 'hidden' : ''}" />
 </button>

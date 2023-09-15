@@ -1,7 +1,7 @@
 <script>
 	import { sampleNotifications } from "$lib/stores/notifications";
 	import Input from "$lib/components/Input.svelte";
-	import Icon from "$lib/components/Icon.svelte";
+	import Icon from "@iconify/svelte";
 
 	const notificationDropdown = "notification-dropdown";
 	const notificationTooltip = "Notifications";
@@ -17,10 +17,10 @@
 				data-drawer-toggle="drawer-navigation"
 				class="mr-2 cursor-pointer rounded-lg p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700 md:hidden"
 			>
-				<Icon class="h-6 w-6" name="bars" />
+				<Icon class="h-6 w-6" icon="fe:bar" />
 			</button>
 
-			<a href="https://github.com/Karaoke-Manager" class="mr-4 flex items-center justify-between">
+			<a href="/" class="mr-4 flex items-center justify-between">
 				<img src="https://usdx.eu/images/ultrastardx-icon.svg" class="mr-3 h-8" alt="Flowbite Logo" />
 				<span class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Karman</span>
 			</a>
@@ -34,7 +34,7 @@
 				class="mr-1 rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:ring-4 focus:ring-gray-300 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-600 md:hidden"
 			>
 				<span class="sr-only">Toggle search</span>
-				<Icon class="h-6 w-6" name="search" fill="none" />
+				<Icon class="h-6 w-6" icon="fe:search" />
 			</button>
 
 			<!-- Notifications -->
@@ -44,7 +44,7 @@
 				data-tooltip-target={notificationTooltip}
 				class="mr-1 rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:ring-4 focus:ring-gray-300 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-600"
 			>
-				<Icon class="h-6 w-6" name="bell" />
+				<Icon class="h-6 w-6" icon="fe:bell" />
 			</button>
 			<div
 				id={notificationTooltip}
@@ -89,7 +89,7 @@
 					class="text-md block bg-gray-50 py-2 text-center font-medium text-gray-900 hover:bg-gray-100 dark:bg-gray-600 dark:text-white dark:hover:underline"
 				>
 					<div class="inline-flex items-center">
-						<Icon class="mr-2 h-4 w-4 text-gray-500 dark:text-gray-400" name="eye" />
+						<Icon class="mr-2 h-4 w-4 text-gray-500 dark:text-gray-400" icon="fe:eye" />
 						View all
 					</div>
 				</a>

@@ -1,6 +1,5 @@
-<script>
-	import Icon from "$lib/components/Icon.svelte";
-
+<script lang="ts">
+	import Icon from "@iconify/svelte";
 	export let value = "";
 	export let placeholder = "";
 	let clazz = "mb-2";
@@ -11,7 +10,7 @@
 <form class="{clazz} ">
 	<div class="relative">
 		<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-			<Icon class="h-5 w-5 text-gray-500 dark:text-gray-400" name="search" fill="none" />
+			<Icon class="h-5 w-5 text-gray-500 dark:text-gray-400" icon="fe-search"></Icon>
 		</div>
 		<input
 			type="text"

@@ -1,5 +1,5 @@
 <script>
-	import Icon from "$lib/components/Icon.svelte";
+	import Icon from "@iconify/svelte";
 
 	/** @type  {import("./$types").PageData} */
 	export let data;
@@ -26,7 +26,7 @@
 					class="absolute right-2 top-2 md:hidden"
 					role="button"
 				>
-					<Icon name="link" class="h-5 w-5 text-gray-500 dark:text-gray-400" />
+					<Icon icon="fe:link-external" class="h-5 w-5 text-gray-500 dark:text-gray-400" />
 				</a>
 
 				<span
@@ -91,7 +91,7 @@
 					role="button"
 				>
 					View Milestone
-					<Icon name="arrow-right" class="-mr-1 ml-2 h-5 w-5" />
+					<Icon icon="fe:arrow-right" class="-mr-1 ml-2 h-5 w-5" />
 				</a>
 			</div>
 		{/each}

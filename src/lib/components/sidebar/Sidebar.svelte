@@ -33,27 +33,27 @@
 		<Input bind:value placeholder="Search" class="mb-2 md:hidden" />
 		<ul class="space-y-2">
 			<li>
-				<SidebarLink icon="pie-chart" name="Overview" href="/" />
+				<SidebarLink icon="fe:pie-chart" name="Overview" href="/" />
 			</li>
 			<li>
-				<SidebarLink icon="calender" name="Milestones" href="/milestones" />
+				<SidebarLink icon="fe:calendar" name="Milestones" href="/milestones" />
 			</li>
 			<li>
-				<SidebarDropDown icon="file" name="Pages" dropDown={pagesDropDown} />
+				<SidebarDropDown icon="fe:file" name="Pages" dropDown={pagesDropDown} />
 			</li>
 			<li>
-				<SidebarDropDown icon="shopping-bag" name="Sales" dropDown={salesDropDown} />
+				<SidebarDropDown icon="fe:shopping-bag" name="Sales" dropDown={salesDropDown} />
 			</li>
 			<li>
-				<SidebarLink icon="inbox" name="Messages" href="/" notify={4} />
+				<SidebarLink icon="fe:comment-o" name="Messages" href="/" notify={4} />
 			</li>
 			<li>
-				<SidebarDropDown icon="lock" name="Authentication" dropDown={authDropDown} />
+				<SidebarDropDown icon="fe:lock" name="Authentication" dropDown={authDropDown} />
 			</li>
 		</ul>
 		<ul class="mt-5 space-y-2 border-t border-gray-200 pt-5 dark:border-gray-700">
 			<li>
-				<SidebarLink icon="clipboard" name="Docs" href="/" />
+				<SidebarLink icon="fe:document" name="Docs" href="/" />
 			</li>
 		</ul>
 	</div>
