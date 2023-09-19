@@ -13,15 +13,15 @@ export const load: PageServerLoad = async ({ url, fetch }) => {
 		throw redirect(303, "/songs?page=1");
 	}
 
-	const limit = 25;
-	const offset = (page - 1) * 25;
+	const limit = 10;
+	const offset = (page - 1) * limit;
 	const response = await fetch(`http://localhost:8080/v1/songs?offset=${offset}&limit=${limit}`);
 	const songs: Song[] = await response.json();
 
 	const total = intHeader(response, "Pagination-Total");
 	const count = intHeader(response, "Pagination-Count");
 
-	if (total >= 0 && count === 0) {
+	if (total > 0 && count === 0) {
 		// if the selected page is too large to get any results, redirect to the last page
 		throw redirect(303, `/songs?page=${Math.ceil(total / limit)}`);
 	}

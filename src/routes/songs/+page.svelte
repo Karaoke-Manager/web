@@ -3,6 +3,24 @@
 	import type { PageServerData } from "./$types";
 
 	export let data: PageServerData;
+
+	const lastPage = Math.max(Math.ceil(data.total / data.limit), 1);
+	const quickPages = [1];
+	let skip = false;
+
+	if (lastPage >= 2) {
+		quickPages.push(2);
+	}
+
+	if (lastPage >= 3) {
+		quickPages.push(3);
+	}
+
+	if (lastPage === 4) {
+		quickPages.push(4);
+	} else if (lastPage > 4) {
+		skip = true;
+	}
 </script>
 
 <section class="bg-gray-50 py-3 dark:bg-gray-900 sm:py-5">
@@ -83,64 +101,42 @@
 				<span class="text-sm font-normal text-gray-500 dark:text-gray-400">
 					Showing
 					<span class="font-semibold text-gray-900 dark:text-white"
-						>{parseInt(data.offset || "0") + 1}-{data.count}</span
+						>{data.offset + 1}-{(data.page - 1) * data.limit + data.count}</span
 					>
 					of
 					<span class="font-semibold text-gray-900 dark:text-white">{data.total}</span>
 				</span>
 				<ul class="inline-flex items-stretch -space-x-px">
+					{#if data.page !== 1}
+						<li>
+							<a
+								href="/songs?page={data.page - 1}"
+								class="ml-0 flex h-full items-center justify-center rounded-l-lg border border-gray-300 bg-white px-3 py-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-primary-700 dark:hover:text-white"
+							>
+								<Icon class="h-5 w-5" icon="fe:arrow-left" />
+							</a>
+						</li>
+					{/if}
 					<li>
-						<a
-							href="/songs?page={data.page - 1}"
-							class="ml-0 flex h-full items-center justify-center rounded-l-lg border border-gray-300 bg-white px-3 py-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+						<div
+							class:rounded-l-lg={data.page === 1}
+							class:rounded-r-lg={data.page === lastPage}
+							class="flex items-center justify-center border border-gray-300 bg-white px-3 py-2 text-sm leading-tight text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
 						>
-							<Icon class="h-5 w-5" icon="fe:arrow-left" />
-						</a>
+							{data.page} / {lastPage}
+						</div>
 					</li>
-					<li>
-						<a
-							href="#"
-							class="flex items-center justify-center border border-gray-300 bg-white px-3 py-2 text-sm leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-							>1</a
-						>
-					</li>
-					<li>
-						<a
-							href="#"
-							class="flex items-center justify-center border border-gray-300 bg-white px-3 py-2 text-sm leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-							>2</a
-						>
-					</li>
-					<li>
-						<a
-							href="#"
-							aria-current="page"
-							class="z-10 flex items-center justify-center border border-primary-300 bg-primary-50 px-3 py-2 text-sm leading-tight text-primary-600 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-							>3</a
-						>
-					</li>
-					<li>
-						<a
-							href="#"
-							class="flex items-center justify-center border border-gray-300 bg-white px-3 py-2 text-sm leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-							>...</a
-						>
-					</li>
-					<li>
-						<a
-							href="#"
-							class="flex items-center justify-center border border-gray-300 bg-white px-3 py-2 text-sm leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-							>100</a
-						>
-					</li>
-					<li>
-						<a
-							href="/songs?page={data.page + 1}"
-							class="flex h-full items-center justify-center rounded-r-lg border border-gray-300 bg-white px-3 py-1.5 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-						>
-							<Icon class="h-5 w-5" icon="fe:arrow-right" />
-						</a>
-					</li>
+
+					{#if data.page !== lastPage}
+						<li>
+							<a
+								href="/songs?page={data.page + 1}"
+								class="flex h-full items-center justify-center rounded-r-lg border border-gray-300 bg-white px-3 py-1.5 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-primary-700 dark:hover:text-white"
+							>
+								<Icon class="h-5 w-5" icon="fe:arrow-right" />
+							</a>
+						</li>
+					{/if}
 				</ul>
 			</nav>
 		</div>
