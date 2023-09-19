@@ -21,7 +21,6 @@
 		{ name: "Forgot Password", href: "/" }
 	];
 	let value = "";
-	$: console.log(value);
 </script>
 
 <aside
@@ -33,16 +32,10 @@
 		<Input bind:value placeholder="Search" class="mb-2 md:hidden" />
 		<ul class="space-y-2">
 			<li>
-				<SidebarLink icon="fe:pie-chart" name="Overview" href="/" />
+				<SidebarLink icon="fe:music" name="Songs" href="/songs" />
 			</li>
 			<li>
 				<SidebarLink icon="fe:calendar" name="Milestones" href="/milestones" />
-			</li>
-			<li>
-				<SidebarDropDown icon="fe:file" name="Pages" dropDown={pagesDropDown} />
-			</li>
-			<li>
-				<SidebarDropDown icon="fe:shopping-bag" name="Sales" dropDown={salesDropDown} />
 			</li>
 			<li>
 				<SidebarLink icon="fe:comment-o" name="Messages" href="/" notify={4} />

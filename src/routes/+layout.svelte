@@ -14,7 +14,7 @@
 
 	<Sidebar />
 
-	<main class="h-auto min-h-screen p-4 pt-20 md:ml-64">
+	<main class="h-auto min-h-screen pt-20 md:ml-64">
 		<slot />
 	</main>
 </div>
