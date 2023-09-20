@@ -35,6 +35,9 @@
 				<SidebarLink icon="fe:music" name="Songs" href="/songs" />
 			</li>
 			<li>
+				<SidebarLink icon="fe:upload" name="Upload" href="/upload" />
+			</li>
+			<li>
 				<SidebarLink icon="fe:calendar" name="Milestones" href="/milestones" />
 			</li>
 			<li>

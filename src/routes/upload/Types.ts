@@ -1,4 +1,4 @@
-export type Folder = {
+export type FolderType = {
 	files: File[];
-	folders: { [name: string]: Folder };
+	folders: { [name: string]: FolderType };
 };
